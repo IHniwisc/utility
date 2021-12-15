@@ -66,6 +66,35 @@ class TestProcess(unittest.TestCase):
                 data_list[i], target[i])
             self.assertEqual(want[i], result)
 
+    def test_import_json(self):
+        file_path = []
+        want = []
+
+        # 1.
+        file_path.append("json.txt")
+        want.append({'name': 'john', 'age': '50'})
+
+        for i in range(len(file_path)):
+            result = utility.import_json(file_path[i])
+            self.assertEqual(want[i], result)
+
+    def test_export_json(self):
+        export_file_name = []
+        data = []
+        want = []
+
+        # 1.
+        export_file_name.append("export_json.txt")
+        data.append({'name': 'Young', 'age': '44'})
+        want.append({'name': 'Young', 'age': '44'})
+
+        for i in range(len(export_file_name)):
+            utility.export_json(export_file_name[i], data[i])
+            result = utility.import_json(export_file_name[i])
+            self.assertEqual(want[i], result)
+
+    def save_as_log(self):
+        pass
 
 if __name__ == '__main__':
     unittest.main()
